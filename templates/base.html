@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Django Blog</title>
+</head>
+<body>
+    <h1><a href="/">My Blog</a></h1>
+
+    {% if user.is_authenticated %}
+        Hello {{ user.username }}
+        <a href="/create/">Create Post</a>
+
+        <form action="/accounts/logout/" method="post">
+            {% csrf_token %}
+            <button type="submit">Logout</button>
+        </form>
+    {% else %}
+        <a href="/signup/">Signup</a>
+        <a href="/accounts/login/">Login</a>
+    {% endif %}
+
+    <hr>
+
+    {% block content %}
+    {% endblock %}
+</body>
+</html>
